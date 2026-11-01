@@ -1,0 +1,14 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "cuda_verified": false,
+  "nvidia_smi": "name, memory.total [MiB], driver_version, compute_cap\nNVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 616.87, 12.0",
+  "packages": {
+    "torch": null,
+    "torchvision": null,
+    "ultralytics": null,
+    "numpy": "2.5.1",
+    "opencv-python": null
+  },
+  "error": "ModuleNotFoundError: No module named 'torch'"
+}

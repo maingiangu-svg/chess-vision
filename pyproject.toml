@@ -13,10 +13,12 @@ dependencies = ["numpy>=1.24", "python-chess>=1.999", "opencv-python>=4.8"]
 vision = ["ultralytics>=8.2"]
 server = ["fastapi>=0.110", "uvicorn[standard]>=0.27"]
 dev = ["pytest>=8", "mypy>=1.8"]
+training = ["torch>=2.10", "torchvision>=0.25", "ultralytics>=8.4", "pillow>=11", "pyyaml>=6"]
+export = ["onnx>=1.17", "onnxscript>=0.3", "onnxruntime>=1.20"]
 
 [tool.pytest.ini_options]
 pythonpath = ["."]
 testpaths = ["tests"]
 
 [tool.setuptools.packages.find]
-include = ["shared*", "vision*", "chess_core*", "application*"]
+include = ["shared*", "vision*", "chess_core*", "application*", "training*"]

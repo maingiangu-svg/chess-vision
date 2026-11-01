@@ -6,3 +6,9 @@ certs/
 samples/
 runs/
 vendor/stockfish/
+data/
+models/
+*.pt
+*.onnx
+*.mlpackage/
+*.egg-info/

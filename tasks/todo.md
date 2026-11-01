@@ -1,0 +1,10 @@
+- [x] Inspect existing repository, shared schema and legal-transition gate.
+- [x] Create feature/vision-training.
+- [ ] Verify CUDA and record GPU measurements.
+- [ ] Test strict import, audit and session-disjoint splitting.
+- [ ] Implement/test both training paths, evaluation and exports.
+- [ ] Import real Redmi capture sessions (data currently absent).
+- [ ] Train baselines and select on validation exact-board accuracy.
+- [ ] Evaluate frozen independent real-camera test set.
+- [ ] Verify accuracy/latency on MacBook M1.
+- [ ] Run all available regression tests and prepare PR.
