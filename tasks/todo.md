@@ -11,5 +11,5 @@
 - [x] Evaluate frozen independent public 2D test set, export and compare formats.
 - [ ] Optional later: evaluate independent real-camera frames (not required for public-data baseline).
 - [ ] Verify accuracy/latency on MacBook M1.
-- [x] Run all available regression tests (33 passed, 3 resource-dependent skips).
+- [x] Run all available regression tests (34 passed, 3 resource-dependent skips).
 - [ ] Package model artifact and prepare draft PR/release; keep main unchanged.

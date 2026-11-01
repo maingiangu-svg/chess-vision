@@ -107,7 +107,7 @@ Server chỉ thêm `CHESS_SQUARE_WEIGHTS` / `CHESS_DEVICE` và nhánh adapter; f
 Stockfish, schema và logic chess-state được giữ. Không đặt đồng thời hai loại
 weights. Xem [hướng dẫn Mac và pipeline](../docs/vision-training.md).
 
-**33 passed, 3 skipped** trong bộ kiểm thử cuối. Ba skip: thiếu ảnh Redmi/engine,
+**34 passed, 3 skipped** trong bộ kiểm thử cuối. Ba skip: thiếu ảnh Redmi/engine,
 thiếu Stockfish cho calibration-to-engine và thiếu Stockfish cho UCI integration.
 Trainer YOLO thực chạy một epoch trên fixture rõ ràng là synthetic để kiểm thử
 API; không dùng các số đó làm chất lượng detector. Không có benchmark YOLO công
@@ -117,3 +117,6 @@ minh. Precision/recall ở báo cáo classifier không được gọi là mAP de
 Trọng số và dataset không vào Git thường. Model được đóng gói riêng với SHA256;
 giữ kết quả thí nghiệm, config, seed và protocol trong nhánh feature/vision-training.
 Mục tiêu camera >=99% ô / >=95% toàn bàn **chưa được xác nhận**.
+
+Báo cáo công khai dùng đường dẫn tương đối và không chứa hostname máy. Bản log
+gốc được giữ cục bộ trong thư mục `runs/` bị ignore; số đo không bị thay đổi.

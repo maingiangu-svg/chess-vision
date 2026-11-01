@@ -17,10 +17,14 @@ def main():
     files = {"model.pt": args.weights, "model.onnx": args.onnx,
              "model.onnx.json": Path(str(args.onnx)+".json"), "MODEL_CARD.md": args.card,
              "docs/vision-training.md": Path("docs/vision-training.md")}
-    files.update({p.as_posix():p for p in Path("reports").iterdir() if p.is_file()})
+    files.update({p.as_posix():p for p in Path("reports").iterdir()
+                  if p.is_file() and p.name != "model-package.json"})
     if args.output.exists():
         raise FileExistsError(args.output)
     payloads = {name:path.read_bytes() for name,path in files.items()}
+    for name,data in payloads.items():
+        if name.endswith(".json"):
+            json.loads(data.decode("utf-8-sig"))
     payloads["SOURCE_COMMIT"] = subprocess.run(["git","rev-parse","HEAD"],check=True,
                                                capture_output=True).stdout
     hashes = {name:hashlib.sha256(data).hexdigest() for name,data in payloads.items()}
@@ -34,7 +38,7 @@ def main():
         for name,digest in hashes.items():
             if hashlib.sha256(bundle.read(name)).hexdigest() != digest:
                 raise RuntimeError(f"Package verification failed: {name}")
-    print(json.dumps(dict(archive=str(args.output.resolve()),bytes=args.output.stat().st_size,
+    print(json.dumps(dict(archive=args.output.name,bytes=args.output.stat().st_size,
                          sha256=hashlib.sha256(args.output.read_bytes()).hexdigest(),members=hashes),indent=2))
 
 

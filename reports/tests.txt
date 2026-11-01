@@ -1,4 +1,4 @@
-...........s...s..........s.........                                     [100%]
+...........s....s..........s.........                                    [100%]
 ============================== warnings summary ===============================
 .venv\Lib\site-packages\chess\engine.py:54
   .venv\Lib\site-packages\chess\engine.py:54: DeprecationWarning: 'asyncio.DefaultEventLoopPolicy' is deprecated and slated for removal in Python 3.16
@@ -13,4 +13,4 @@ tests/test_training_pipeline.py::test_training_checkpoint_export_and_evaluation_
     setup_onnx_logging(verbose) as log_ctx,
 
 -- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
-33 passed, 3 skipped, 3 warnings in 81.39s (0:01:21)
+34 passed, 3 skipped, 3 warnings in 63.51s (0:01:03)
