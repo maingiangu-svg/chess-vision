@@ -1,0 +1,14 @@
+{
+  "completed_epochs": 1,
+  "selected_checkpoint": "runs/positions-001/best.pt",
+  "reason": "predeclared public-2D validation baseline targets reached; incomplete next epoch discarded",
+  "validation": {
+    "loss": 3.8131686086774593e-06,
+    "raw_square_accuracy": 1.0,
+    "raw_board_exact_match": 1.0,
+    "full_board_exact_match": 1.0,
+    "abstention_rate": 0.0,
+    "squares": 637824,
+    "seconds": 26.705982999992557
+  }
+}

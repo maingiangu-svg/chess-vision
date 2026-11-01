@@ -1,0 +1,33 @@
+{
+  "os": "Windows-11-10.0.26200-SP0",
+  "python": "3.14.0 (tags/v3.14.0:ebf955d, Oct  7 2025, 10:15:03) [MSC v.1944 64 bit (AMD64)]",
+  "cuda_verified": true,
+  "nvidia_smi": "name, memory.total [MiB], driver_version, compute_cap\nNVIDIA GeForce RTX 5060 Laptop GPU, 8151 MiB, 616.87, 12.0",
+  "packages": {
+    "torch": "2.11.0+cu128",
+    "torchvision": "0.26.0+cu128",
+    "ultralytics": "8.4.197",
+    "numpy": "2.5.4",
+    "opencv-python": "5.0.0.93"
+  },
+  "cuda_runtime": "12.8",
+  "cuda_available": true,
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "capability": [
+    12,
+    0
+  ],
+  "compiled_architectures": [
+    "sm_75",
+    "sm_80",
+    "sm_86",
+    "sm_90",
+    "sm_100",
+    "sm_120"
+  ],
+  "amp_fp16": true,
+  "cold_forward_backward_ms": 16244.65949999285,
+  "warm_forward_backward_median_ms": 13.133500004187226,
+  "peak_allocated_mib": 528.12939453125,
+  "note": "Random tensor hardware smoke check, not model training or accuracy evaluation."
+}

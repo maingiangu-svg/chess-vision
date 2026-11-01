@@ -1,0 +1,16 @@
+...........s....s..........s.........                                    [100%]
+============================== warnings summary ===============================
+.venv\Lib\site-packages\chess\engine.py:54
+  .venv\Lib\site-packages\chess\engine.py:54: DeprecationWarning: 'asyncio.DefaultEventLoopPolicy' is deprecated and slated for removal in Python 3.16
+    EventLoopPolicy = asyncio.DefaultEventLoopPolicy
+
+tests/test_training_pipeline.py::test_training_checkpoint_export_and_evaluation_plumbing
+  training\export.py:21: DeprecationWarning: You are using the legacy TorchScript-based ONNX export. Starting in PyTorch 2.9, the new torch.export-based ONNX exporter has become the default. Learn more about the new export logic: https://docs.pytorch.org/docs/stable/onnx_export.html. For exporting control flow: https://pytorch.org/tutorials/beginner/onnx/export_control_flow_model_to_onnx_tutorial.html
+    torch.onnx.export(model, example, str(output), input_names=["squares"], output_names=["logits"],
+
+tests/test_training_pipeline.py::test_training_checkpoint_export_and_evaluation_plumbing
+  .venv\Lib\site-packages\torch\onnx\_internal\torchscript_exporter\utils.py:218: DeprecationWarning: The feature will be removed. Please remove usage of this function
+    setup_onnx_logging(verbose) as log_ctx,
+
+-- Docs: https://docs.pytest.org/en/stable/how-to/capture-warnings.html
+34 passed, 3 skipped, 3 warnings in 63.51s (0:01:03)

@@ -1,0 +1,18 @@
+{
+  "splits": "data\\positions-frozen\\splits.json",
+  "output": "runs\\positions-002",
+  "epochs": 2,
+  "batch_boards": 32,
+  "workers": 4,
+  "seed": 42,
+  "patience": 4,
+  "lr": 0.0005,
+  "initial": "runs\\positions-001\\best.pt",
+  "camera_augment": true,
+  "architecture": "tiny_cnn",
+  "device": "cuda:0",
+  "confidence": 0.9,
+  "margin": 0.25,
+  "domain": "synthetic_2d",
+  "real_camera_accuracy": null
+}

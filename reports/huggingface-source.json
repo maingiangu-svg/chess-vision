@@ -1,0 +1,7 @@
+{
+  "dataset": "smallchess/kaggle-chess-positions",
+  "revision": "35fed168fce84b775473c72f643543c0c64d695a",
+  "image_files": 10000,
+  "has_test": false,
+  "license": "cc0-1.0"
+}

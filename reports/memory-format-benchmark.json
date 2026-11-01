@@ -1,0 +1,8 @@
+{
+  "batch_squares": 2048,
+  "forward_backward_median_ms": {
+    "nchw": 103.53759999998147,
+    "channels_last": 446.8971500027692
+  },
+  "scope": "random tensor training kernel comparison, not inference latency"
+}

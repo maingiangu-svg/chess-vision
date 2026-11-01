@@ -1,0 +1,56 @@
+{
+  "protocol": "reports/finetune-protocol.json",
+  "test_used_for_selection": false,
+  "candidates": [
+    {
+      "name": "baseline",
+      "path": "runs/positions-001/best.pt",
+      "validation": {
+        "loss": 3.8131686086774593e-06,
+        "raw_square_accuracy": 1.0,
+        "raw_board_exact_match": 1.0,
+        "full_board_exact_match": 1.0,
+        "abstention_rate": 0.0,
+        "squares": 637824,
+        "seconds": 26.705982999992557
+      },
+      "mean_transformed_validation_exact_match": 0.625244140625,
+      "eligible": true,
+      "sha256": "258870b5daf969af12d2ca6c44bc67f8eef1da50e28a0a0c7d861d2ccd5ab6e6"
+    },
+    {
+      "name": "finetune_epoch1",
+      "path": "runs/positions-002/epoch-1.pt",
+      "validation": {
+        "loss": 0.00012318781407111884,
+        "raw_square_accuracy": 1.0,
+        "raw_board_exact_match": 1.0,
+        "full_board_exact_match": 0.9997993176801124,
+        "abstention_rate": 3.1356612482440297e-06,
+        "squares": 637824,
+        "seconds": 25.609702100002323
+      },
+      "mean_transformed_validation_exact_match": 0.940185546875,
+      "eligible": true,
+      "sha256": "eebae769e8f2b88000de5e61f691e97637d3bfc5717663a779b64cff8ff87b2d"
+    },
+    {
+      "name": "finetune_epoch2",
+      "path": "runs/positions-002/last.pt",
+      "validation": {
+        "loss": 8.8895765329266e-05,
+        "raw_square_accuracy": 1.0,
+        "raw_board_exact_match": 1.0,
+        "full_board_exact_match": 0.9997993176801124,
+        "abstention_rate": 3.1356612482440297e-06,
+        "squares": 637824,
+        "seconds": 11.786430299995118
+      },
+      "mean_transformed_validation_exact_match": 0.9560546875,
+      "eligible": true,
+      "sha256": "883c0cbf2c0acb9795c238d0da6dfdba625e0b658a38e72ee1248d1aad0ebf9b"
+    }
+  ],
+  "selected": "finetune_epoch2",
+  "selected_sha256": "883c0cbf2c0acb9795c238d0da6dfdba625e0b658a38e72ee1248d1aad0ebf9b"
+}

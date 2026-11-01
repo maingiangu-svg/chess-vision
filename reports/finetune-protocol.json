@@ -1,0 +1,16 @@
+{
+  "experiment": "positions-002",
+  "initial": "positions-001 epoch 1",
+  "selection_data": "validation only; clean 9966 boards and deterministic 512-board transformed subset",
+  "epochs": 2,
+  "learning_rate": 0.0005,
+  "augmentations": [
+    "brightness/contrast",
+    "quarter-turn rotations",
+    "Gaussian blur sigma 0.2-1.6",
+    "mild transparent yellow tint"
+  ],
+  "selection_rule": "among baseline and fine-tune best/last, require clean validation square accuracy >=0.99 and full-board exact match >=0.95; maximize mean transformed-validation full-board exact-match",
+  "test_used_for_selection": false,
+  "note": "Repeated synthetic-asset validation does not establish camera generalization. Partial occlusion may require abstention rather than correct reconstruction."
+}
