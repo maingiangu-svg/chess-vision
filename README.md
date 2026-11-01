@@ -72,6 +72,7 @@ camera accuracy is claimed without independent real-camera samples. A public 2D
 CNN has been trained on 70,034 FEN-labeled boards, with separate validation and
 20,000 publisher test boards. Read the experiment reports before deployment;
 synthetic render accuracy is distinct from phone-camera performance.
+See [measured results and limitations](reports/vision-training-results.md).
 
 Create a CUDA-enabled PyTorch environment using the command from the official PyTorch selector for the installed CUDA driver, then:
 

@@ -12,4 +12,5 @@
 - [ ] Optional later: evaluate independent real-camera frames (not required for public-data baseline).
 - [ ] Verify accuracy/latency on MacBook M1.
 - [x] Run all available regression tests (34 passed, 3 resource-dependent skips).
-- [ ] Package model artifact and prepare draft PR/release; keep main unchanged.
+- [x] Package verified PT/ONNX artifact and upload draft release.
+- [x] Open draft PR #1; keep main unchanged.
