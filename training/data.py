@@ -40,6 +40,15 @@ def load_annotation(path):
         raise ValueError(f"{path}: require all 64 explicit labels from shared.schemas plus empty")
     if data.get("orientation") not in ORIENTATIONS:
         raise ValueError(f"{path}: invalid orientation")
+    if not isinstance(data.get("tags", []), list) or any(not isinstance(t, str) for t in data.get("tags", [])):
+        raise ValueError(f"{path}: tags must be a list of strings")
+    if data.get("fen"):
+        import chess
+        from vision.template_recognition import SYMBOL_TO_LABEL
+        board = chess.Board(data["fen"])
+        expected = {chess.square_name(s): SYMBOL_TO_LABEL[p.symbol()] if (p := board.piece_at(s)) else "empty" for s in chess.SQUARES}
+        if not board.is_valid() or labels != expected:
+            raise ValueError(f"{path}: FEN must be valid and match all labels")
     corners = np.asarray(data.get("corners"), dtype=np.float32)
     if corners.shape != (4, 2) or not np.isfinite(corners).all():
         raise ValueError(f"{path}: require four finite TL/TR/BR/BL corners")
