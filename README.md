@@ -1,7 +1,5 @@
 # Chess Vision AI
 
-## Redmi Turbo 3 + MacBook M1 LAN demo
-
 The Mac serves a small mobile web interface and WebSocket processor. The Redmi camera sends compressed 640-pixel JPEG frames at most roughly 3 times per second; only one analysis frame is in flight. The phone draws the detected board and projected engine move. This frontend is plain TypeScript-free browser JavaScript so it can be served directly without a Node build step.
 
 ```bash
