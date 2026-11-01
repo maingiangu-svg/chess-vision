@@ -1,0 +1,6 @@
+camera_id: 0
+board_size: 800
+orientation: white
+confidence: 0.35
+stockfish_time_seconds: 0.25
+model_weights: null
