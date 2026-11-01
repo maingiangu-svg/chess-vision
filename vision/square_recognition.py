@@ -1,20 +1,28 @@
 """13-class square adapter sharing TemplateRecognizer's uncertainty contract.
 
-Inheritance preserves the existing server's isinstance dispatch without changing
-FastAPI or game-state code. Callers still pass observations through MoveTracker.
+Callers still pass observations through the existing legal-move tracker.
 """
 from pathlib import Path
 import cv2
 import numpy as np
 from shared.schemas import PIECE_CLASSES
-from vision.template_recognition import TemplateRecognizer, square_image
+from vision.template_recognition import square_image
 
 CLASSES = (*PIECE_CLASSES, "empty")
 SQUARES = tuple(f"{f}{r}" for r in range(1, 9) for f in "abcdefgh")
 
 
-def build_model(pretrained=False):
+def build_model(pretrained=False, architecture="mobilenet_v3_small"):
     import torch
+    if architecture == "tiny_cnn":
+        return torch.nn.Sequential(
+            torch.nn.Conv2d(3, 24, 3, padding=1), torch.nn.BatchNorm2d(24), torch.nn.ReLU(), torch.nn.MaxPool2d(2),
+            torch.nn.Conv2d(24, 48, 3, padding=1), torch.nn.BatchNorm2d(48), torch.nn.ReLU(), torch.nn.MaxPool2d(2),
+            torch.nn.Conv2d(48, 64, 3, padding=1), torch.nn.BatchNorm2d(64), torch.nn.ReLU(), torch.nn.MaxPool2d(2),
+            torch.nn.Flatten(), torch.nn.Linear(64*6*6, 128), torch.nn.ReLU(), torch.nn.Dropout(.15),
+            torch.nn.Linear(128, len(CLASSES)))
+    if architecture != "mobilenet_v3_small":
+        raise ValueError(f"Unknown architecture: {architecture}")
     from torchvision.models import mobilenet_v3_small, MobileNet_V3_Small_Weights
     model = mobilenet_v3_small(weights=MobileNet_V3_Small_Weights.DEFAULT if pretrained else None)
     model.classifier[-1] = torch.nn.Linear(model.classifier[-1].in_features, len(CLASSES))
@@ -30,7 +38,7 @@ def tensor_from_bgr(patches):
     return (tensor-mean)/std
 
 
-class SquareRecognizer(TemplateRecognizer):
+class SquareRecognizer:
     def __init__(self, weights, device="cpu", confidence=.9, margin=.25, fallback=None):
         import torch
         if not 0 <= confidence <= 1 or not 0 <= margin <= 1:
@@ -49,7 +57,7 @@ class SquareRecognizer(TemplateRecognizer):
         else:
             checkpoint = torch.load(weights, map_location="cpu", weights_only=True)
             metadata = checkpoint
-            self.model = build_model()
+            self.model = build_model(architecture=checkpoint.get("architecture", "mobilenet_v3_small"))
             self.model.load_state_dict(checkpoint["state_dict"])
             self.model.to(device).eval()
         if tuple(metadata["classes"]) != CLASSES or metadata.get("input_size") != 48:

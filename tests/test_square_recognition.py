@@ -17,7 +17,7 @@ def test_uncertain_empty_square_blocks_existing_tracker(orientation):
     recognizer = SquareRecognizer.__new__(SquareRecognizer)
     recognizer.threshold, recognizer.margin, recognizer.fallback = .9, .25, None
     recognizer.probabilities = lambda patches: np.full((64, 13), 1/13)
-    assert isinstance(recognizer, TemplateRecognizer)
+    assert isinstance(recognizer, SquareRecognizer)
     frame = np.zeros((800, 800, 3), np.uint8)
     occupied, confidence, errors = recognizer.predict(frame, orientation)
     assert occupied == {} and len(errors) == 64
@@ -34,12 +34,49 @@ def test_detection_json_contract():
     assert decoded["label"] == CLASSES[0] and len(decoded["bbox"]) == 4
 
 
-def test_checkpoint_round_trip_and_wrong_mapping(tmp_path):
+def test_server_opt_in_square_loading_and_ambiguous_config(monkeypatch):
+    from fastapi.testclient import TestClient
+    from application.server import app
+    sentinel = object()
+    monkeypatch.setenv("CHESS_SQUARE_WEIGHTS", "fixture.pt")
+    monkeypatch.delenv("CHESS_WEIGHTS", raising=False)
+    monkeypatch.setattr("application.server.SquareRecognizer", lambda weights, device: sentinel)
+    with TestClient(app):
+        assert app.state.detector is sentinel
+    monkeypatch.setenv("CHESS_WEIGHTS", "other.pt")
+    with pytest.raises(ValueError, match="either"):
+        with TestClient(app):
+            pass
+
+
+def test_orientation_change_retains_neural_model(monkeypatch):
+    import base64
+    import cv2
+    from fastapi.testclient import TestClient
+    from application.server import app
+    monkeypatch.delenv("CHESS_SQUARE_WEIGHTS", raising=False)
+    monkeypatch.delenv("CHESS_WEIGHTS", raising=False)
+    recognizer = SquareRecognizer.__new__(SquareRecognizer)
+    recognizer.threshold, recognizer.margin, recognizer.fallback = .9, .25, None
+    recognizer.probabilities = lambda patches: np.full((64,13), 1/13)
+    encoded = base64.b64encode(cv2.imencode(".jpg",np.zeros((800,800,3),np.uint8))[1]).decode()
+    with TestClient(app) as client:
+        app.state.detector = recognizer
+        with client.websocket_connect("/ws") as ws:
+            ws.send_json(dict(type="orientation", value="black"))
+            ws.send_json(dict(type="corners", points=[[0,0],[799,0],[799,799],[0,799]]))
+            ws.send_json(dict(type="frame", jpeg=encoded))
+            assert ws.receive_json()["status"] == "uncertain"
+
+
+@pytest.mark.parametrize("architecture", ["mobilenet_v3_small", "tiny_cnn"])
+def test_checkpoint_round_trip_and_wrong_mapping(tmp_path, architecture):
     import torch
     from vision.square_recognition import build_model
     torch.set_num_threads(2)
     path = tmp_path / "fixture.pt"
-    checkpoint = dict(state_dict=build_model().state_dict(), classes=list(CLASSES), input_size=48)
+    checkpoint = dict(state_dict=build_model(architecture=architecture).state_dict(),
+                      classes=list(CLASSES), input_size=48, architecture=architecture)
     torch.save(checkpoint, path)
     recognizer = SquareRecognizer(path)
     probabilities = recognizer.probabilities(np.zeros((64,48,48,3), np.uint8))

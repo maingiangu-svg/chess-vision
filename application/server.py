@@ -19,6 +19,7 @@ from chess_core.move_tracker import MoveTracker, placement_from_squares
 from chess_core.stockfish_engine import StockfishEngine
 from vision.board_detection import BoardGeometry, detect_board_corners, order_corners
 from vision.piece_detection import YoloPieceDetector
+from vision.square_recognition import SquareRecognizer
 from vision.square_mapping import assign_detections, point_for_square
 from vision.template_recognition import TemplateRecognizer
 
@@ -26,7 +27,11 @@ ROOT = Path(__file__).resolve().parents[1]
 
 @asynccontextmanager
 async def lifespan(app: FastAPI):
-    app.state.detector = YoloPieceDetector(os.environ["CHESS_WEIGHTS"]) if os.environ.get("CHESS_WEIGHTS") else None
+    square_weights, yolo_weights = os.getenv("CHESS_SQUARE_WEIGHTS"), os.getenv("CHESS_WEIGHTS")
+    if square_weights and yolo_weights:
+        raise ValueError("Set either CHESS_SQUARE_WEIGHTS or CHESS_WEIGHTS")
+    app.state.detector = (SquareRecognizer(square_weights, device=os.getenv("CHESS_DEVICE", "cpu"))
+                          if square_weights else YoloPieceDetector(yolo_weights) if yolo_weights else None)
     local = ROOT / "vendor/stockfish/stockfish/stockfish-macos-universal"
     path = os.environ.get("STOCKFISH_PATH") or shutil.which("stockfish") or (str(local) if local.is_file() else None)
     app.state.engine = StockfishEngine(path) if path else None
@@ -54,7 +59,7 @@ def decode_frame(encoded: str) -> np.ndarray:
 def analyze_frame(frame, geometry, detector, tracker, orientation):
     if detector is None: return "model_unavailable", 0.0
     rectified = geometry.rectify(frame)
-    if isinstance(detector, TemplateRecognizer):
+    if isinstance(detector, (TemplateRecognizer, SquareRecognizer)):
         squares, confidence, errors = detector.predict(rectified, orientation)
     else:
         detections = detector.predict(rectified)
