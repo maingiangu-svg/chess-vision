@@ -1,5 +1,6 @@
 """YOLO dataset conversion uses manual piece boxes, never fabricated square boxes."""
 from collections import Counter
+import os
 from pathlib import Path
 import cv2
 import numpy as np
@@ -46,6 +47,8 @@ def prepare_yolo(splits, root):
 
 
 def train_yolo(splits, config, output):
+    # Keep font/config downloads on the workspace volume (AppData can be redirected on Windows).
+    os.environ.setdefault("YOLO_CONFIG_DIR", str((Path(output) / "runtime").resolve()))
     from ultralytics import YOLO
     data = prepare_yolo(splits, output / "dataset")
     model = YOLO(config["pretrained_detector"])
