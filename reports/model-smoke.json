@@ -1,0 +1,34 @@
+{
+  "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU",
+  "square_mobilenet": {
+    "input_shape": [
+      64,
+      3,
+      48,
+      48
+    ],
+    "amp": true,
+    "forward_backward_ms": 17044.868399985717,
+    "peak_allocated_mib": 56.9482421875,
+    "finite_output": true,
+    "finite_gradients": true,
+    "gradient_tensors": 142
+  },
+  "yolo11n": {
+    "input_shape": [
+      4,
+      3,
+      640,
+      640
+    ],
+    "amp": true,
+    "forward_backward_ms": 10490.499399995315,
+    "peak_allocated_mib": 564.63720703125,
+    "finite_output": true,
+    "finite_gradients": true,
+    "gradient_tensors": 255
+  },
+  "real_camera_images": 0,
+  "real_camera_accuracy": null,
+  "note": "Pretrained initialization + random tensor output-energy backward; not supervised chess training, not accuracy or inference latency."
+}

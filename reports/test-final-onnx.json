@@ -1,0 +1,695 @@
+{
+  "boards": 20000,
+  "squares": 1280000,
+  "square_accuracy": 0.99999453125,
+  "full_board_exact_match": 0.9997,
+  "abstention_rate": 5.46875e-06,
+  "invalid_position_frequency": 0.1555,
+  "invalid_position_definition": "is_valid with supplied FEN context, otherwise either turn/no castling; uncertainty is invalid",
+  "confusion_labels": [
+    "white_pawn",
+    "white_knight",
+    "white_bishop",
+    "white_rook",
+    "white_queen",
+    "white_king",
+    "black_pawn",
+    "black_knight",
+    "black_bishop",
+    "black_rook",
+    "black_queen",
+    "black_king",
+    "empty",
+    "uncertain"
+  ],
+  "confusion_matrix": [
+    [
+      18119,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      17606,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      17700,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      17536,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      8785,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      20000,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17929,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17628,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17695,
+      0,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      17889,
+      0,
+      0,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      8763,
+      0,
+      0,
+      5
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      20000,
+      0,
+      0
+    ],
+    [
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      0,
+      1080343,
+      1
+    ]
+  ],
+  "per_class": {
+    "white_pawn": {
+      "support": 18119,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "white_knight": {
+      "support": 17606,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "white_bishop": {
+      "support": 17700,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "white_rook": {
+      "support": 17536,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "white_queen": {
+      "support": 8785,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "white_king": {
+      "support": 20000,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "black_pawn": {
+      "support": 17930,
+      "precision": 1.0,
+      "recall": 0.9999442275515895
+    },
+    "black_knight": {
+      "support": 17628,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "black_bishop": {
+      "support": 17695,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "black_rook": {
+      "support": 17889,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "black_queen": {
+      "support": 8768,
+      "precision": 1.0,
+      "recall": 0.9994297445255474
+    },
+    "black_king": {
+      "support": 20000,
+      "precision": 1.0,
+      "recall": 1.0
+    },
+    "empty": {
+      "support": 1080344,
+      "precision": 1.0,
+      "recall": 0.9999990743689047
+    }
+  },
+  "latency_ms": {
+    "median": 15.929999994114041,
+    "p95": 19.611149998672772,
+    "boards": 128,
+    "scope": "single rectified board to 64 predictions; crop/normalization/transfer included, image decode/geometry/network/Stockfish excluded"
+  },
+  "failures": [
+    {
+      "image": "data\\chess-positions\\dataset\\test\\2K5-2P2qP1-1R2b3-2B3R1-2n5-5k2-8-5r2.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "f6",
+          "truth": "empty",
+          "predicted": "uncertain"
+        }
+      ]
+    },
+    {
+      "image": "data\\chess-positions\\dataset\\test\\3R1b1r-8-6P1-6q1-6B1-p1N1p3-1p1K2k1-8.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "a3",
+          "truth": "black_pawn",
+          "predicted": "uncertain"
+        }
+      ]
+    },
+    {
+      "image": "data\\chess-positions\\dataset\\test\\8-K1P1b3-6Q1-6p1-B7-8-8-q1k5.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "a1",
+          "truth": "black_queen",
+          "predicted": "uncertain"
+        }
+      ]
+    },
+    {
+      "image": "data\\chess-positions\\dataset\\test\\K7-3R2Rk-5N2-7B-2b1q3-1N6-1P4P1-qbR5.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "a1",
+          "truth": "black_queen",
+          "predicted": "uncertain"
+        }
+      ]
+    },
+    {
+      "image": "data\\chess-positions\\dataset\\test\\Qq6-N3k1b1-K2q1B2-R7-4N3-8-2B5-4B3.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "d6",
+          "truth": "black_queen",
+          "predicted": "uncertain"
+        },
+        {
+          "square": "b8",
+          "truth": "black_queen",
+          "predicted": "uncertain"
+        }
+      ]
+    },
+    {
+      "image": "data\\chess-positions\\dataset\\test\\R5b1-5n2-1r6-K1N4k-2p5-1B2B1p1-n6q-4QQ2.jpeg",
+      "tags": [
+        "synthetic_2d"
+      ],
+      "errors": [
+        {
+          "square": "h2",
+          "truth": "black_queen",
+          "predicted": "uncertain"
+        }
+      ]
+    }
+  ],
+  "by_tag": {
+    "synthetic_2d": {
+      "boards": 20000,
+      "exact_match": 0.9997
+    }
+  },
+  "domain": "synthetic_2d",
+  "real_camera_accuracy": null,
+  "split": "test",
+  "raw_argmax": {
+    "square_accuracy": 0.99999921875,
+    "full_board_exact_match": 0.99995,
+    "confusion_matrix": [
+      [
+        18119,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        17606,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        17700,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        17536,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        8785,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        20000,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17930,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17628,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17695,
+        0,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        17889,
+        0,
+        0,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        8767,
+        1,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        20000,
+        0,
+        0
+      ],
+      [
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        0,
+        1080344,
+        0
+      ]
+    ],
+    "per_class": {
+      "white_pawn": {
+        "support": 18119,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "white_knight": {
+        "support": 17606,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "white_bishop": {
+        "support": 17700,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "white_rook": {
+        "support": 17536,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "white_queen": {
+        "support": 8785,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "white_king": {
+        "support": 20000,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "black_pawn": {
+        "support": 17930,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "black_knight": {
+        "support": 17628,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "black_bishop": {
+        "support": 17695,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "black_rook": {
+        "support": 17889,
+        "precision": 1.0,
+        "recall": 1.0
+      },
+      "black_queen": {
+        "support": 8768,
+        "precision": 1.0,
+        "recall": 0.9998859489051095
+      },
+      "black_king": {
+        "support": 20000,
+        "precision": 0.999950002499875,
+        "recall": 1.0
+      },
+      "empty": {
+        "support": 1080344,
+        "precision": 1.0,
+        "recall": 1.0
+      }
+    }
+  },
+  "ground_truth_invalid_position_frequency": 0.1553,
+  "confidence": 0.9,
+  "margin": 0.25,
+  "batch_evaluation_seconds": 124.78161920000275,
+  "hardware": {
+    "os": "Windows-11-10.0.26200-SP0",
+    "device": "cpu",
+    "torch": "2.11.0+cu128",
+    "gpu": "NVIDIA GeForce RTX 5060 Laptop GPU"
+  },
+  "weights_sha256": "c97b5028a98f1183aa0c39d3e55c09ac40a8c931ce05f6a8ce5f9cff061f4966",
+  "splits_sha256": "13d9b309bbaba802f8953cbd9040f89c057ab98b706c32019c746648d142f75f"
+}

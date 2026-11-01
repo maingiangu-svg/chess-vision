@@ -1,0 +1,6 @@
+{
+  "path": "data\\chess-positions",
+  "jpeg_images": 200000,
+  "tool": "kagglehub",
+  "real_camera": false
+}

@@ -1,0 +1,73 @@
+{
+  "source": "koryakinp/chess-positions",
+  "domain": "synthetic_2d",
+  "license": "CC0-1.0",
+  "images_downloaded": 200000,
+  "exact_duplicates_removed": 100000,
+  "unique_position_groups": 100000,
+  "split_definition": "publisher test reserved by whole FEN group; 12.5% of remaining FEN groups validation; no tile-level random splitting",
+  "theme_generalization": "same source assets may appear across splits; not an unseen-theme or camera benchmark",
+  "splits": {
+    "train": {
+      "boards": 70034,
+      "squares": 4482176,
+      "position_groups": 70034,
+      "class_counts": {
+        "white_pawn": 62939,
+        "white_knight": 62287,
+        "white_bishop": 61524,
+        "white_rook": 62193,
+        "white_queen": 31077,
+        "white_king": 70034,
+        "black_pawn": 62976,
+        "black_knight": 62213,
+        "black_bishop": 62026,
+        "black_rook": 62105,
+        "black_queen": 31196,
+        "black_king": 70034,
+        "empty": 3781572
+      }
+    },
+    "val": {
+      "boards": 9966,
+      "squares": 637824,
+      "position_groups": 9966,
+      "class_counts": {
+        "white_pawn": 9053,
+        "white_knight": 8807,
+        "white_bishop": 8839,
+        "white_rook": 8788,
+        "white_queen": 4451,
+        "white_king": 9966,
+        "black_pawn": 9085,
+        "black_knight": 8875,
+        "black_bishop": 8831,
+        "black_rook": 8819,
+        "black_queen": 4342,
+        "black_king": 9966,
+        "empty": 538002
+      }
+    },
+    "test": {
+      "boards": 20000,
+      "squares": 1280000,
+      "position_groups": 20000,
+      "class_counts": {
+        "white_pawn": 18119,
+        "white_knight": 17606,
+        "white_bishop": 17700,
+        "white_rook": 17536,
+        "white_queen": 8785,
+        "white_king": 20000,
+        "black_pawn": 17930,
+        "black_knight": 17628,
+        "black_bishop": 17695,
+        "black_rook": 17889,
+        "black_queen": 8768,
+        "black_king": 20000,
+        "empty": 1080344
+      }
+    }
+  },
+  "audit_seconds": 336.1668092000036
+}

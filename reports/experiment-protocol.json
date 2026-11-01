@@ -1,0 +1,13 @@
+{
+  "experiment": "positions-001",
+  "domain": "public synthetic 2D Chess Positions, not real camera",
+  "source": "koryakinp/chess-positions/versions/1",
+  "train_boards": 70034,
+  "validation_boards": 9966,
+  "test_boards": 20000,
+  "test_accessed_for_model_selection": false,
+  "checkpoint_selection": "validation full-board exact-match with confidence=0.9 and margin=0.25, then raw square accuracy",
+  "baseline_completion_rule": "may stop at a saved epoch when validation full-board exact-match >=0.95 and raw square accuracy minus abstention rate >=0.99; otherwise at most 12 epochs/patience 4",
+  "real_camera_validation": "unavailable, no Redmi accuracy claim",
+  "format_comparison": "same frozen test images for PT and ONNX after checkpoint selection"
+}
