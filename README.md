@@ -65,6 +65,14 @@ Set `STOCKFISH_PATH` or use `--stockfish`. Start at the normal initial position,
 
 ## RTX setup and model training
 
+The reproducible offline training pipeline, session-based data import, evaluation,
+exports and M1 adapter are documented in [vision-training.md](docs/vision-training.md).
+See the [dataset audit](reports/dataset-audit.md) before choosing data. No
+camera accuracy is claimed without independent real-camera samples. A public 2D
+CNN has been trained on 70,034 FEN-labeled boards, with separate validation and
+20,000 publisher test boards. Read the experiment reports before deployment;
+synthetic render accuracy is distinct from phone-camera performance.
+
 Create a CUDA-enabled PyTorch environment using the command from the official PyTorch selector for the installed CUDA driver, then:
 
 ```bash

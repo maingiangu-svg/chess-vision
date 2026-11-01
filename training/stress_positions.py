@@ -1,5 +1,6 @@
 """Diagnostic transforms of public validation renders; NOT real-camera evidence."""
 import argparse
+import hashlib
 import json
 from pathlib import Path
 import random
@@ -52,7 +53,9 @@ def main():
     subset = random.Random(42).sample(records,min(args.boards,len(records)))
     model = SquareRecognizer(args.weights,device="cuda:0")
     report = dict(domain="diagnostic transforms of synthetic validation renders", real_camera_accuracy=None,
-                  seed=42, boards_per_case=len(subset), confidence=.9, margin=.25, cases={})
+                  seed=42, boards_per_case=len(subset), confidence=.9, margin=.25,
+                  weights_sha256=hashlib.sha256(args.weights.read_bytes()).hexdigest(),
+                  splits_sha256=hashlib.sha256(args.splits.read_bytes()).hexdigest(), cases={})
     for case in ("clean","blur","jpeg35","rotate90","rotate180","highlight","occlusion","perspective_rectified"):
         rows = []
         for record in subset:

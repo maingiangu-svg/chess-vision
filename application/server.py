@@ -30,8 +30,12 @@ async def lifespan(app: FastAPI):
     square_weights, yolo_weights = os.getenv("CHESS_SQUARE_WEIGHTS"), os.getenv("CHESS_WEIGHTS")
     if square_weights and yolo_weights:
         raise ValueError("Set either CHESS_SQUARE_WEIGHTS or CHESS_WEIGHTS")
-    app.state.detector = (SquareRecognizer(square_weights, device=os.getenv("CHESS_DEVICE", "cpu"))
-                          if square_weights else YoloPieceDetector(yolo_weights) if yolo_weights else None)
+    if square_weights:
+        app.state.detector = SquareRecognizer(square_weights, device=os.getenv("CHESS_DEVICE", "cpu"))
+    elif yolo_weights:
+        app.state.detector = YoloPieceDetector(yolo_weights)
+    else:
+        app.state.detector = None
     local = ROOT / "vendor/stockfish/stockfish/stockfish-macos-universal"
     path = os.environ.get("STOCKFISH_PATH") or shutil.which("stockfish") or (str(local) if local.is_file() else None)
     app.state.engine = StockfishEngine(path) if path else None

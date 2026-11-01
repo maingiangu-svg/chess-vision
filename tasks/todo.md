@@ -1,10 +1,15 @@
 - [x] Inspect existing repository, shared schema and legal-transition gate.
 - [x] Create feature/vision-training.
-- [ ] Verify CUDA and record GPU measurements.
-- [ ] Test strict import, audit and session-disjoint splitting.
-- [ ] Implement/test both training paths, evaluation and exports.
-- [ ] Import real Redmi capture sessions (data currently absent).
-- [ ] Train baselines and select on validation exact-board accuracy.
-- [ ] Evaluate frozen independent real-camera test set.
+- [x] Verify CUDA and record GPU measurements.
+- [x] Test strict import, audit and session-disjoint splitting.
+- [x] Implement/test both training paths, evaluation and ONNX exports.
+- [x] Audit four requested public sources and download original Kaggle dataset.
+- [x] Deduplicate 200,000 JPEG files to 100,000 unique images/position groups.
+- [x] Freeze 70,034 train / 9,966 val / 20,000 publisher test boards.
+- [x] Train public 2D CNN and select on validation exact-board accuracy.
+- [x] Fine-tune blur/rotations and choose via predeclared validation stress protocol.
+- [x] Evaluate frozen independent public 2D test set, export and compare formats.
+- [ ] Optional later: evaluate independent real-camera frames (not required for public-data baseline).
 - [ ] Verify accuracy/latency on MacBook M1.
-- [ ] Run all available regression tests and prepare PR.
+- [x] Run all available regression tests (33 passed, 3 resource-dependent skips).
+- [ ] Package model artifact and prepare draft PR/release; keep main unchanged.

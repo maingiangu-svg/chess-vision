@@ -18,3 +18,11 @@ Data risk: samples and Mac engine are ignored by Git and absent here. Public
 screenshots/synthetic renders cannot establish Redmi real-camera accuracy.
 No fake labels or inferred tight piece boxes. No accuracy claim before independent
 real-camera evaluation. Targets remain >=99% squares and >=95% exact boards.
+
+User direction update: prioritize existing public 2D datasets, no manual capture
+or annotation requirement for baseline. Download original Kaggle Chess Positions
+via KaggleHub after license check. Decode filename FEN, deduplicate whole images,
+reserve publisher test by FEN group and split validation from remaining positions.
+Train a small CNN on all available training boards with memory-bounded loaders.
+Validate/select before opening test; export PT/ONNX and measure both. Keep camera
+claims and Mac-specific measurements explicitly unverified when unavailable.

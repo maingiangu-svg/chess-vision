@@ -3,6 +3,7 @@ import argparse
 import importlib.metadata
 import json
 import platform
+import statistics
 import subprocess
 import sys
 import time
@@ -39,8 +40,20 @@ def inspect() -> dict:
             loss = layer(x).square().mean()
         loss.backward()
         torch.cuda.synchronize()
+        cold_ms = (time.perf_counter()-start)*1000
+        timings = []
+        for _ in range(5):
+            layer.zero_grad(set_to_none=True)
+            torch.cuda.synchronize()
+            start = time.perf_counter()
+            with torch.autocast("cuda", dtype=torch.float16):
+                loss = layer(x).square().mean()
+            loss.backward()
+            torch.cuda.synchronize()
+            timings.append((time.perf_counter()-start)*1000)
         report.update(cuda_verified=bool(torch.isfinite(loss) and torch.isfinite(layer.weight.grad).all()),
-                      amp_fp16=True, forward_backward_ms=(time.perf_counter()-start)*1000,
+                      amp_fp16=True, cold_forward_backward_ms=cold_ms,
+                      warm_forward_backward_median_ms=statistics.median(timings),
                       peak_allocated_mib=torch.cuda.max_memory_allocated()/2**20,
                       note="Random tensor hardware smoke check, not model training or accuracy evaluation.")
     except Exception as exc:
